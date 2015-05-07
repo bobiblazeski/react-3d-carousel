@@ -1,0 +1,32 @@
+{
+  "name": "react-carousel",
+  "version": "0.0.1",
+  "description": "A carousel written in react",
+  "main": "js/Carousel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "carousel",
+    "react",
+    "react-component"
+  ],
+  "dependencies": {
+    "react": "^0.13.2",
+    "react-swipeable": "^3.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=0.13.x"
+  },
+  "author": "Josh Perez <josh@goatslacker.com>",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/dogfessional/react-carousel.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "jsx-loader": "^0.13.2",
+    "webpack": "^1.8.11",
+    "webpack-dev-server": "^1.8.2"
+  }
+}
