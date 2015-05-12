@@ -11,23 +11,12 @@ exports.figureStyle = function figureStyle(d) {
     };
 };
 
-exports.carouselStyle = function carouselStyle(translateZ) {
-    return {
-        transform: "translateZ(" + (-translateZ) + "px)"
-    };
-};
-
 exports.partial = function partial(func){
     var args = Array.prototype.slice.call(arguments, 1);
     return function(){
         return func.apply(this,args.concat(Array.prototype.slice.call(arguments, 0)));
     }
 };
-/*
- var multiply = function(a, b) { return a * b; };
- var double = partial(multiply, 2)
- double(3) //=> 6
- */
 
 exports.range = function range(from,to){
     var res = [];

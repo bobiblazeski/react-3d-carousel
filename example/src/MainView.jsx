@@ -1,10 +1,11 @@
 var Carousel = require('../../src/carousel');
 var Ease = require('../../src/ease');
+var images = require('./images');
 
 var MainView = React.createClass({
     getInitialState: function () {
         return {
-            sides: 3,
+            images: images.slice(0, 3),
             width: 400,
             layout: 'prism',
             ease: 'linear',
@@ -13,7 +14,7 @@ var MainView = React.createClass({
     },
     componentWillMount: function () {
         this.onSides = function (event) {
-            this.setState({sides: event.target.value});
+            this.setState( {images: images.slice(0, event.target.value) });
         }.bind(this);
         this.onLayout = function (event) {
             this.setState({layout: event.target.value});
@@ -32,7 +33,7 @@ var MainView = React.createClass({
         return (
             <div>
                 <Carousel width={this.state.width}
-                          sides={this.state.sides}
+                          images={this.state.images}
                           ease={this.state.ease}
                           duration={this.state.duration}
                           layout={this.state.layout}/>

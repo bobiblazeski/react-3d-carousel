@@ -9,9 +9,9 @@ module.exports = function depot(initialState, initialProps,callback) {
     var requestID;
 
     res.onNextProps = function onNextProps(nextProps) {
-        if(props.layout != nextProps.layout || props.sides != nextProps.sides) {
+        if(props.layout != nextProps.layout || props.images != nextProps.images) {
             props = nextProps;
-            var to = Layout[props.layout].figures(props.width, props.sides, state.rotationY);
+            var to = Layout[props.layout].figures(props.width, props.images, state.rotationY);
             var bounds = transitionFigures(state.figures, to,Ease[props.ease], props.duration);
             var stepper = transit(bounds, to, props.duration);
             playAnimation(state,to,stepper,callback);
@@ -19,8 +19,8 @@ module.exports = function depot(initialState, initialProps,callback) {
         props = nextProps;
     };
     res.onRotate = function(angle){
+        var to = Layout[props.layout].figures(props.width,props.images,state.rotationY + angle);
         state.rotationY +=angle;
-        var to = Layout[props.layout].figures(props.width,props.sides,state.rotationY + angle);
         var bounds = transitionFigures(state.figures,to,Ease[props.ease],props.duration);
         var stepper = transit(bounds, to, props.duration);
         if(requestID) { cancelAnimationFrame(requestID); }
@@ -33,7 +33,7 @@ module.exports = function depot(initialState, initialProps,callback) {
             state.figures = stepper(timestamp);
             callback(state);
             if (state.figures == to) {
-                window.cancelAnimationFrame(requestID);
+                cancelAnimationFrame(requestID);
             }
         }
         requestAnimationFrame(animate);

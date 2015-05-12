@@ -1,5 +1,6 @@
+// Sample images used in the demo
 module.exports = [
-    'http://s4.postimg.org/r6g5ay2ng/zen1.jpg',
+    'http://s4.postimg.org/6mbbcgmwd/zen1.jpg',
     'http://s21.postimg.org/er8b066p3/zen2.jpg',
     'http://s30.postimg.org/x3cgpdtgx/zen3.jpg',
     'http://s21.postimg.org/h1estw95z/zen4.jpg',
