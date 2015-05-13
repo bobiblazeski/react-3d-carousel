@@ -5,7 +5,7 @@ var images = require('./images');
 var MainView = React.createClass({
     getInitialState: function () {
         return {
-            images: images.slice(0, 3),
+            images: images.slice(0, 6),
             width: 400,
             layout: 'prism',
             ease: 'linear',
@@ -44,7 +44,7 @@ var MainView = React.createClass({
                         </td>
                         <td>
                             <input type="range" id="panel-count"
-                                   value={this.state.sides} min="3" max="20"
+                                   value={this.state.images.length} min="3" max="20"
                                    onChange={this.onSides}/>
                         </td>
                         <td><span>{this.state.sides}</span></td>

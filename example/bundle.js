@@ -69,7 +69,7 @@
 
 	    getInitialState: function getInitialState() {
 	        return {
-	            images: images.slice(0, 3),
+	            images: images.slice(0, 6),
 	            width: 400,
 	            layout: 'prism',
 	            ease: 'linear',
@@ -125,7 +125,7 @@
 	                        'td',
 	                        null,
 	                        React.createElement('input', { type: 'range', id: 'panel-count',
-	                            value: this.state.sides, min: '3', max: '20',
+	                            value: this.state.images.length, min: '3', max: '20',
 	                            onChange: this.onSides })
 	                    ),
 	                    React.createElement(
@@ -719,14 +719,14 @@
 
 	// Sample images used in the demo
 	module.exports = [
-	    'http://s4.postimg.org/6mbbcgmwd/zen1.jpg',
+	    'http://s7.postimg.org/dbamgegu3/zen8.jpg',
 	    'http://s21.postimg.org/er8b066p3/zen2.jpg',
+	    'http://s4.postimg.org/6mbbcgmwd/zen1.jpg',
 	    'http://s30.postimg.org/x3cgpdtgx/zen3.jpg',
 	    'http://s21.postimg.org/h1estw95z/zen4.jpg',
 	    'http://s8.postimg.org/upypfrk8l/zen5.jpg',
 	    'http://s7.postimg.org/goiv34aez/zen6.jpg',
 	    'http://s30.postimg.org/n9zuqbgq9/zen7.jpg',
-	    'http://s7.postimg.org/dbamgegu3/zen8.jpg',
 	    'http://s12.postimg.org/9kw5b42d9/zen9.jpg',
 	    'http://s13.postimg.org/vwf92qbl3/zen10.jpg',
 	    'http://s4.postimg.org/anf2w9rzh/zen11.jpg',
