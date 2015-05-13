@@ -14,7 +14,8 @@
   ],
   "dependencies": {
     "react": "^0.13.x",
-    "react-3d-carousel": "0.0.2"
+    "ease-functions": "*",
+    "react-3d-carousel": "*"
   },
   "peerDependencies": {
     "react": ">=0.13.x < 1.0.0"
