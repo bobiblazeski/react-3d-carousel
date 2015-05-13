@@ -1,5 +1,5 @@
 {
-  "name": "react-carousel",
+  "name": "react-3d-carousel",
   "version": "0.0.1",
   "description": "A 3D carousel written in react",
   "main": "js/Carousel.js",
