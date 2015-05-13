@@ -2,5 +2,4 @@
 node_modules/
 example/bundle.js.map
 example/node_modules/
-js/
 npm-debug.log
