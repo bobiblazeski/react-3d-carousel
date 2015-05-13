@@ -1,6 +1,6 @@
 {
   "name": "react-3d-carousel-demo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Example for a 3D carousel written in react",
   "main": "src/index.js",
   "scripts": {
@@ -13,7 +13,8 @@
     "3D"
   ],
   "dependencies": {
-    "react": ">=0.13.x < 1.0.0"
+    "react": "^0.13.x",
+    "react-3d-carousel": "0.0.2"
   },
   "peerDependencies": {
     "react": ">=0.13.x < 1.0.0"

@@ -1,5 +1,5 @@
-var Carousel = require('../../src/carousel');
-var Ease = require('../../src/ease');
+var Carousel = require('react-3d-carousel');
+var Ease = require('ease-functions');
 var images = require('./images');
 
 var MainView = React.createClass({

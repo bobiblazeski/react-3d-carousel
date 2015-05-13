@@ -11,7 +11,9 @@
     "react",
     "react-component"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "ease-functions": "0.0.1"
+  },
   "peerDependencies": {
     "react": ">=0.13.x < 1.0.0"
   },

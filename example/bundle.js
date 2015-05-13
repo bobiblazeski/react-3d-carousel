@@ -61,8 +61,8 @@
 	'use strict';
 
 	var Carousel = __webpack_require__(2);
-	var Ease = __webpack_require__(7);
-	var images = __webpack_require__(8);
+	var Ease = __webpack_require__(8);
+	var images = __webpack_require__(9);
 
 	var MainView = React.createClass({
 	    displayName: 'MainView',
@@ -283,42 +283,39 @@
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var exports = module.exports = {};
+	'use strict';
 
+	var _exports = module.exports = {};
 
-	exports.figureStyle = function figureStyle(d) {
+	_exports.figureStyle = function figureStyle(d) {
 	    var translateX = Object.hasOwnProperty.call(d, 'translateX') ? d.translateX : 0;
 	    return {
-	        transform: 'rotateY(' + d.rotateY + 'rad) '
-	        + ' translateX(' + translateX + 'px)'
-	        + ' translateZ(' + d.translateZ + 'px)',
+	        transform: 'rotateY(' + d.rotateY + 'rad) ' + ' translateX(' + translateX + 'px)' + ' translateZ(' + d.translateZ + 'px)',
 	        opacity: d.opacity
 	    };
 	};
 
-	exports.partial = function partial(func){
+	_exports.partial = function partial(func) {
 	    var args = Array.prototype.slice.call(arguments, 1);
-	    return function(){
-	        return func.apply(this,args.concat(Array.prototype.slice.call(arguments, 0)));
-	    }
+	    return function () {
+	        return func.apply(this, args.concat(Array.prototype.slice.call(arguments, 0)));
+	    };
 	};
 
-	exports.range = function range(from,to){
+	_exports.range = function range(from, to) {
 	    var res = [];
-	    for(var i =from; i < to; ++i){
+	    for (var i = from; i < to; ++i) {
 	        res.push(i);
 	    }
 	    return res;
 	};
 
-	exports.uniq = function uniq(a) {
-	    var prims = {"boolean":{}, "number":{}, "string":{}}, objs = [];
-	    return a.filter(function(item) {
+	_exports.uniq = function uniq(a) {
+	    var prims = { 'boolean': {}, 'number': {}, 'string': {} },
+	        objs = [];
+	    return a.filter(function (item) {
 	        var type = typeof item;
-	        if(type in prims)
-	            return prims[type].hasOwnProperty(item) ? false : (prims[type][item] = true);
-	        else
-	            return objs.indexOf(item) >= 0 ? false : objs.push(item);
+	        if (type in prims) return prims[type].hasOwnProperty(item) ? false : prims[type][item] = true;else return objs.indexOf(item) >= 0 ? false : objs.push(item);
 	    });
 	};
 
@@ -329,7 +326,7 @@
 	 * @param {Object} options User options
 	 * @returns {Object} Merged values of defaults and options
 	 */
-	exports.merge = function merge(defaults, options ) {
+	_exports.merge = function merge(defaults, options) {
 	    var extended = {};
 	    var prop;
 	    for (prop in defaults) {
@@ -345,16 +342,16 @@
 	    return extended;
 	};
 
-	exports.pluck = function pluck(key,entries){
-	    return entries.map(function(entry){
+	_exports.pluck = function pluck(key, entries) {
+	    return entries.map(function (entry) {
 	        return entry[key];
 	    });
 	};
 
-	exports.mapObj = function mapObj(fn,obj){
-	    var res= {};
-	    for(var key in obj){
-	        if(obj.hasOwnProperty(key)){
+	_exports.mapObj = function mapObj(fn, obj) {
+	    var res = {};
+	    for (var key in obj) {
+	        if (obj.hasOwnProperty(key)) {
 	            res[key] = fn(obj[key]);
 	        }
 	    }
@@ -365,15 +362,17 @@
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var Util = __webpack_require__(4);
 
-	var exports = module.exports = {};
+	var _exports = module.exports = {};
 
-	exports.prism = {
+	_exports.prism = {
 	    distance: function apothem(width, sides) {
 	        return Math.ceil(width / (2 * Math.tan(Math.PI / sides)));
 	    },
-	    figures: function (width, images, initial) {
+	    figures: function figures(width, images, initial) {
 	        var sides = images.length;
 	        var angle = 2 * Math.PI / sides;
 	        var acceptable = Math.round(initial / angle) * angle;
@@ -381,7 +380,7 @@
 	            return {
 	                rotateY: d * angle + acceptable,
 	                translateX: 0,
-	                translateZ: exports.prism.distance(width, sides),
+	                translateZ: _exports.prism.distance(width, sides),
 	                opacity: 1,
 	                present: true,
 	                key: d,
@@ -390,14 +389,14 @@
 	        });
 	    }
 	};
-	exports.classic = {
-	    distance: function (width, sides) {
-	        return Math.round(width * Math.log(sides))
+	_exports.classic = {
+	    distance: function distance(width, sides) {
+	        return Math.round(width * Math.log(sides));
 	    },
-	    figures: function (width, images, initial) {
+	    figures: function figures(width, images, initial) {
 	        var sides = images.length;
 	        var angle = 2 * Math.PI / sides;
-	        var distance = exports.classic.distance(width, sides);
+	        var distance = _exports.classic.distance(width, sides);
 	        var acceptable = Math.round(initial / angle) * angle;
 	        return Util.range(0, sides).map(function (d) {
 	            var angleR = d * angle + acceptable;
@@ -414,42 +413,44 @@
 	    }
 	};
 
-
-
 /***/ },
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	var Ease = __webpack_require__(7);
 	var Layout = __webpack_require__(5);
 	var Util = __webpack_require__(4);
 
-	module.exports = function depot(initialState, initialProps,callback) {
+	module.exports = function depot(initialState, initialProps, callback) {
 	    var res = {};
 	    var state = initialState;
 	    var props = initialProps;
 	    var requestID;
 
 	    res.onNextProps = function onNextProps(nextProps) {
-	        if(props.layout != nextProps.layout || props.images != nextProps.images) {
+	        if (props.layout != nextProps.layout || props.images != nextProps.images) {
 	            props = nextProps;
 	            var to = Layout[props.layout].figures(props.width, props.images, state.rotationY);
-	            var bounds = transitionFigures(state.figures, to,Ease[props.ease], props.duration);
+	            var bounds = transitionFigures(state.figures, to, Ease[props.ease], props.duration);
 	            var stepper = transit(bounds, to, props.duration);
-	            playAnimation(state,to,stepper,callback);
+	            playAnimation(state, to, stepper, callback);
 	        }
 	        props = nextProps;
 	    };
-	    res.onRotate = function(angle){
-	        var to = Layout[props.layout].figures(props.width,props.images,state.rotationY + angle);
-	        state.rotationY +=angle;
-	        var bounds = transitionFigures(state.figures,to,Ease[props.ease],props.duration);
+	    res.onRotate = function (angle) {
+	        var to = Layout[props.layout].figures(props.width, props.images, state.rotationY + angle);
+	        state.rotationY += angle;
+	        var bounds = transitionFigures(state.figures, to, Ease[props.ease], props.duration);
 	        var stepper = transit(bounds, to, props.duration);
-	        if(requestID) { cancelAnimationFrame(requestID); }
-	        playAnimation(state,to,stepper,callback);
+	        if (requestID) {
+	            cancelAnimationFrame(requestID);
+	        }
+	        playAnimation(state, to, stepper, callback);
 	    };
-	    function playAnimation(state,to,stepper,callback){
-	        if(requestID) window.cancelAnimationFrame(requestID);
+	    function playAnimation(state, to, stepper, callback) {
+	        if (requestID) window.cancelAnimationFrame(requestID);
 	        function animate(timestamp) {
 	            requestID = requestAnimationFrame(animate);
 	            state.figures = stepper(timestamp);
@@ -463,33 +464,30 @@
 	    return res;
 	};
 
-
-
 	function transitionFigures(from, to, ease) {
 	    var keys = Util.uniq(Util.pluck('key', from.concat(to)));
 	    var fromTo = [];
 	    keys.forEach(function (key) {
-	        fromTo.push(transfigure(startFrame(from[key], to[key]),
-	            endFrame(from[key], to[key]), ease));
+	        fromTo.push(transfigure(startFrame(from[key], to[key]), endFrame(from[key], to[key]), ease));
 	    });
 	    return fromTo;
 	}
 
 	function transit(entries, to, duration) {
-	    var start,end;
+	    var start, end;
 	    var withChange = addChange(entries);
 	    var time = 0;
 	    return function step(timestamp) {
-	        if(!start) {
-	            start =timestamp;
-	            end =timestamp+duration;
+	        if (!start) {
+	            start = timestamp;
+	            end = timestamp + duration;
 	        }
 	        if (timestamp >= end) {
 	            return to;
 	        }
 	        time = timestamp - start;
 	        return tally(time, withChange, duration);
-	    }
+	    };
 	}
 
 	function transfigure(from, to, ease) {
@@ -517,7 +515,7 @@
 	function addObjChange(entry) {
 	    var res = Object.create(null);
 	    for (var key in entry) {
-	        res[key] = Util.merge(entry[key], {change: entry[key].to - entry[key].from});
+	        res[key] = Util.merge(entry[key], { change: entry[key].to - entry[key].from });
 	    }
 	    return res;
 	}
@@ -530,16 +528,14 @@
 	        entry = entries[i];
 	        var obj = Object.create(null);
 	        for (var key in entry) {
-	            obj[key] = entry[key].ease ?
-	                entry[key].ease(time, entry[key].from, entry[key].change, duration)
-	                : entry[key].from;
+	            obj[key] = entry[key].ease ? entry[key].ease(time, entry[key].from, entry[key].change, duration) : entry[key].from;
 	        }
 	        res[i] = obj;
 	    }
 	    return res;
 	}
 
-	var secondArg = function (x, y) {
+	var secondArg = function secondArg(x, y) {
 	    return y;
 	};
 
@@ -550,20 +546,21 @@
 	};
 
 	function startFrame(now, then) {
-	    return now || Util.merge(then, {present: true, opacity: 0});
+	    return now || Util.merge(then, { present: true, opacity: 0 });
 	}
 
 	function endFrame(now, then) {
-	    return now && !then ? Util.merge(now, {present: false, opacity: 0}) // leaves
-	        : Util.merge(then, {present: true, opacity: 1});
+	    return now && !then ? Util.merge(now, { present: false, opacity: 0 }) // leaves
+	    : Util.merge(then, { present: true, opacity: 1 });
 	}
-
 
 /***/ },
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var exports = module.exports = {};
+	"use strict";
+
+	var _exports = module.exports = {};
 
 	function bounceOut(time, begin, change, duration) {
 	    if ((time /= duration) < 1 / 2.75) {
@@ -576,14 +573,14 @@
 	        return change * (7.5625 * (time -= 2.625 / 2.75) * time + 0.984375) + begin;
 	    }
 	}
-	exports.bounceOut = bounceOut;
+	_exports.bounceOut = bounceOut;
 
 	function bounceIn(time, begin, change, duration) {
 	    return change - bounceOut(duration - time, 0, change, duration) + begin;
 	}
-	exports.bounceIn = bounceIn;
+	_exports.bounceIn = bounceIn;
 
-	exports.bounceInOut = function bounceInOut(time, begin, change, duration) {
+	_exports.bounceInOut = function bounceInOut(time, begin, change, duration) {
 	    if (time < duration / 2) {
 	        return bounceIn(time * 2, 0, change, duration) * 0.5 + begin;
 	    } else {
@@ -591,15 +588,15 @@
 	    }
 	};
 
-	exports.circIn = function circIn(time, begin, change, duration) {
+	_exports.circIn = function circIn(time, begin, change, duration) {
 	    return -change * (Math.sqrt(1 - (time = time / duration) * time) - 1) + begin;
 	};
 
-	exports.circOut = function circOut(time, begin, change, duration) {
+	_exports.circOut = function circOut(time, begin, change, duration) {
 	    return change * Math.sqrt(1 - (time = time / duration - 1) * time) + begin;
 	};
 
-	exports.circInOut = function circInOut(time, begin, change, duration) {
+	_exports.circInOut = function circInOut(time, begin, change, duration) {
 	    if ((time = time / (duration / 2)) < 1) {
 	        return -change / 2 * (Math.sqrt(1 - time * time) - 1) + begin;
 	    } else {
@@ -607,15 +604,15 @@
 	    }
 	};
 
-	exports.cubicIn = function cubicIn(time, begin, change, duration) {
+	_exports.cubicIn = function cubicIn(time, begin, change, duration) {
 	    return change * (time /= duration) * time * time + begin;
 	};
 
-	exports.cubicOut = function cubicOut(time, begin, change, duration) {
+	_exports.cubicOut = function cubicOut(time, begin, change, duration) {
 	    return change * ((time = time / duration - 1) * time * time + 1) + begin;
 	};
 
-	exports.cubicInOut = function cubicInOut(time, begin, change, duration) {
+	_exports.cubicInOut = function cubicInOut(time, begin, change, duration) {
 	    if ((time = time / (duration / 2)) < 1) {
 	        return change / 2 * time * time * time + begin;
 	    } else {
@@ -623,21 +620,21 @@
 	    }
 	};
 
-	exports.expoIn = function expoIn(time, begin, change, duration) {
+	_exports.expoIn = function expoIn(time, begin, change, duration) {
 	    if (time === 0) {
 	        return begin;
 	    }
 	    return change * Math.pow(2, 10 * (time / duration - 1)) + begin;
 	};
 
-	exports.expoOut = function expoOut(time, begin, change, duration) {
+	_exports.expoOut = function expoOut(time, begin, change, duration) {
 	    if (time === duration) {
 	        return begin + change;
 	    }
 	    return change * (-Math.pow(2, -10 * time / duration) + 1) + begin;
 	};
 
-	exports.expoInOut = function expoInOut(time, begin, change, duration) {
+	_exports.expoInOut = function expoInOut(time, begin, change, duration) {
 	    if (time === 0) {
 	        return begin;
 	    } else if (time === duration) {
@@ -649,19 +646,19 @@
 	    }
 	};
 
-	exports.linear = function linear(time, begin, change, duration) {
+	_exports.linear = function linear(time, begin, change, duration) {
 	    return change * time / duration + begin;
 	};
 
-	exports.quadIn = function quadIn(time, begin, change, duration) {
+	_exports.quadIn = function quadIn(time, begin, change, duration) {
 	    return change * (time = time / duration) * time + begin;
 	};
 
-	exports.quadOut = function quadOut(time, begin, change, duration) {
+	_exports.quadOut = function quadOut(time, begin, change, duration) {
 	    return -change * (time = time / duration) * (time - 2) + begin;
 	};
 
-	exports.quadInOut = function quadInOut(time, begin, change, duration) {
+	_exports.quadInOut = function quadInOut(time, begin, change, duration) {
 	    if ((time = time / (duration / 2)) < 1) {
 	        return change / 2 * time * time + begin;
 	    } else {
@@ -669,15 +666,15 @@
 	    }
 	};
 
-	exports.quartIn = function quartIn(time, begin, change, duration) {
+	_exports.quartIn = function quartIn(time, begin, change, duration) {
 	    return change * (time = time / duration) * time * time * time + begin;
 	};
 
-	exports.quartOut = function quartOut(time, begin, change, duration) {
+	_exports.quartOut = function quartOut(time, begin, change, duration) {
 	    return -change * ((time = time / duration - 1) * time * time * time - 1) + begin;
 	};
 
-	exports.quartInOut = function quartInOut(time, begin, change, duration) {
+	_exports.quartInOut = function quartInOut(time, begin, change, duration) {
 	    if ((time = time / (duration / 2)) < 1) {
 	        return change / 2 * time * time * time * time + begin;
 	    } else {
@@ -685,15 +682,15 @@
 	    }
 	};
 
-	exports.quintIn = function quintIn(time, begin, change, duration) {
+	_exports.quintIn = function quintIn(time, begin, change, duration) {
 	    return change * (time = time / duration) * time * time * time * time + begin;
 	};
 
-	exports.quintOut = function quintOut(time, begin, change, duration) {
+	_exports.quintOut = function quintOut(time, begin, change, duration) {
 	    return change * ((time = time / duration - 1) * time * time * time * time + 1) + begin;
 	};
 
-	exports.quintInOut = function quintInOut(time, begin, change, duration) {
+	_exports.quintInOut = function quintInOut(time, begin, change, duration) {
 	    if ((time = time / (duration / 2)) < 1) {
 	        return change / 2 * time * time * time * time * time + begin;
 	    } else {
@@ -701,20 +698,216 @@
 	    }
 	};
 
-	exports.sineIn = function sineIn(time, begin, change, duration) {
+	_exports.sineIn = function sineIn(time, begin, change, duration) {
 	    return -change * Math.cos(time / duration * (Math.PI / 2)) + change + begin;
 	};
 
-	exports.sineOut = function sineOut(time, begin, change, duration) {
+	_exports.sineOut = function sineOut(time, begin, change, duration) {
 	    return change * Math.sin(time / duration * (Math.PI / 2)) + begin;
 	};
 
-	exports.sineInOut = function sineInOut(time, begin, change, duration) {
+	_exports.sineInOut = function sineInOut(time, begin, change, duration) {
 	    return -change / 2 * (Math.cos(Math.PI * time / duration) - 1) + begin;
 	};
 
 /***/ },
 /* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	(function () {
+
+	    'use strict';
+
+
+	    function bounceOut(time, begin, change, duration) {
+	        if ((time /= duration) < 1 / 2.75) {
+	            return change * (7.5625 * time * time) + begin;
+	        } else if (time < 2 / 2.75) {
+	            return change * (7.5625 * (time -= 1.5 / 2.75) * time + 0.75) + begin;
+	        } else if (time < 2.5 / 2.75) {
+	            return change * (7.5625 * (time -= 2.25 / 2.75) * time + 0.9375) + begin;
+	        } else {
+	            return change * (7.5625 * (time -= 2.625 / 2.75) * time + 0.984375) + begin;
+	        }
+	    }
+
+
+	    function bounceIn(time, begin, change, duration) {
+	        return change - bounceOut(duration - time, 0, change, duration) + begin;
+	    }
+
+
+	    function bounceInOut(time, begin, change, duration) {
+	        if (time < duration / 2) {
+	            return bounceIn(time * 2, 0, change, duration) * 0.5 + begin;
+	        } else {
+	            return bounceOut(time * 2 - duration, 0, change, duration) * 0.5 + change * 0.5 + begin;
+	        }
+	    };
+
+	    function circIn(time, begin, change, duration) {
+	        return -change * (Math.sqrt(1 - (time = time / duration) * time) - 1) + begin;
+	    };
+
+	    function circOut(time, begin, change, duration) {
+	        return change * Math.sqrt(1 - (time = time / duration - 1) * time) + begin;
+	    };
+
+	    function circInOut(time, begin, change, duration) {
+	        if ((time = time / (duration / 2)) < 1) {
+	            return -change / 2 * (Math.sqrt(1 - time * time) - 1) + begin;
+	        } else {
+	            return change / 2 * (Math.sqrt(1 - (time -= 2) * time) + 1) + begin;
+	        }
+	    };
+
+	    function cubicIn(time, begin, change, duration) {
+	        return change * (time /= duration) * time * time + begin;
+	    };
+
+	    function cubicOut(time, begin, change, duration) {
+	        return change * ((time = time / duration - 1) * time * time + 1) + begin;
+	    };
+
+	    function cubicInOut(time, begin, change, duration) {
+	        if ((time = time / (duration / 2)) < 1) {
+	            return change / 2 * time * time * time + begin;
+	        } else {
+	            return change / 2 * ((time -= 2) * time * time + 2) + begin;
+	        }
+	    };
+
+	    function expoIn(time, begin, change, duration) {
+	        if (time === 0) {
+	            return begin;
+	        }
+	        return change * Math.pow(2, 10 * (time / duration - 1)) + begin;
+	    };
+
+	    function expoOut(time, begin, change, duration) {
+	        if (time === duration) {
+	            return begin + change;
+	        }
+	        return change * (-Math.pow(2, -10 * time / duration) + 1) + begin;
+	    };
+
+	    function expoInOut(time, begin, change, duration) {
+	        if (time === 0) {
+	            return begin;
+	        } else if (time === duration) {
+	            return begin + change;
+	        } else if ((time = time / (duration / 2)) < 1) {
+	            return change / 2 * Math.pow(2, 10 * (time - 1)) + begin;
+	        } else {
+	            return change / 2 * (-Math.pow(2, -10 * (time - 1)) + 2) + begin;
+	        }
+	    };
+
+	    function linear(time, begin, change, duration) {
+	        return change * time / duration + begin;
+	    };
+
+	    function quadIn(time, begin, change, duration) {
+	        return change * (time = time / duration) * time + begin;
+	    };
+
+	    function quadOut(time, begin, change, duration) {
+	        return -change * (time = time / duration) * (time - 2) + begin;
+	    };
+
+	    function quadInOut(time, begin, change, duration) {
+	        if ((time = time / (duration / 2)) < 1) {
+	            return change / 2 * time * time + begin;
+	        } else {
+	            return -change / 2 * ((time -= 1) * (time - 2) - 1) + begin;
+	        }
+	    };
+
+	    function quartIn(time, begin, change, duration) {
+	        return change * (time = time / duration) * time * time * time + begin;
+	    };
+
+	    function quartOut(time, begin, change, duration) {
+	        return -change * ((time = time / duration - 1) * time * time * time - 1) + begin;
+	    };
+
+	    function quartInOut(time, begin, change, duration) {
+	        if ((time = time / (duration / 2)) < 1) {
+	            return change / 2 * time * time * time * time + begin;
+	        } else {
+	            return -change / 2 * ((time -= 2) * time * time * time - 2) + begin;
+	        }
+	    };
+
+	    function quintIn(time, begin, change, duration) {
+	        return change * (time = time / duration) * time * time * time * time + begin;
+	    };
+
+	    function quintOut(time, begin, change, duration) {
+	        return change * ((time = time / duration - 1) * time * time * time * time + 1) + begin;
+	    };
+
+	    function quintInOut(time, begin, change, duration) {
+	        if ((time = time / (duration / 2)) < 1) {
+	            return change / 2 * time * time * time * time * time + begin;
+	        } else {
+	            return change / 2 * ((time -= 2) * time * time * time * time + 2) + begin;
+	        }
+	    };
+
+	    function sineIn(time, begin, change, duration) {
+	        return -change * Math.cos(time / duration * (Math.PI / 2)) + change + begin;
+	    };
+
+	    function sineOut(time, begin, change, duration) {
+	        return change * Math.sin(time / duration * (Math.PI / 2)) + begin;
+	    };
+
+	    function sineInOut(time, begin, change, duration) {
+	        return -change / 2 * (Math.cos(Math.PI * time / duration) - 1) + begin;
+	    };
+
+	    var Ease = {
+	        bounceOut: bounceOut,
+	        bounceIn: bounceIn,
+	        bounceInOut: bounceInOut,
+	        circIn: circIn,
+	        circOut: circOut,
+	        circInOut: circInOut,
+	        cubicIn: cubicIn,
+	        cubicOut: cubicOut,
+	        cubicInOut: cubicInOut,
+	        expoIn: expoIn,
+	        expoOut: expoOut,
+	        expoInOut: expoInOut,
+	        linear: linear,
+	        quadIn: quadIn,
+	        quadOut: quadOut,
+	        quadInOut: quadInOut,
+	        quartIn: quartIn,
+	        quartOut: quartOut,
+	        quartInOut: quartInOut,
+	        quintIn: quintIn,
+	        quintOut: quintOut,
+	        quintInOut: quintInOut,
+	        sineIn: sineIn,
+	        sineOut: sineOut,
+	        sineInOut: sineInOut
+	    }
+	    if (true) {
+	        module.exports = Ease;
+	    } else if (typeof define === 'function' && define.amd) {
+	        define(function () {
+	            return Ease;
+	        });
+	    } else {
+	        this.Ease = Ease;
+	    }
+
+	}.call(this));
+
+/***/ },
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Sample images used in the demo
