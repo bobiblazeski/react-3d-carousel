@@ -266,8 +266,8 @@
 	                    style: { transform: 'translateZ(' + translateZ + 'px)' } },
 	                figures
 	            ),
-	            React.createElement('div', { className: 'prev', onClick: Util.partial(this.onRotate, +angle) }),
-	            React.createElement('div', { className: 'next', onClick: Util.partial(this.onRotate, -angle) })
+	            React.createElement('div', { className: 'prev', onClick: Util.partial(this.onRotate, -angle) }),
+	            React.createElement('div', { className: 'next', onClick: Util.partial(this.onRotate, angle) })
 	        );
 	    }
 	});
