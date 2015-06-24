@@ -266,8 +266,8 @@
 	                    style: { transform: 'translateZ(' + translateZ + 'px)' } },
 	                figures
 	            ),
-	            React.createElement('div', { className: 'prev', onClick: Util.partial(this.onRotate, -angle) }),
-	            React.createElement('div', { className: 'next', onClick: Util.partial(this.onRotate, angle) })
+	            React.createElement('div', { className: 'prev', onClick: Util.partial(this.onRotate, +angle) }),
+	            React.createElement('div', { className: 'next', onClick: Util.partial(this.onRotate, -angle) })
 	        );
 	    }
 	});
@@ -275,13 +275,13 @@
 
 /***/ },
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	module.exports = React;
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
@@ -752,7 +752,7 @@
 
 /***/ },
 /* 8 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	// Sample images used in the demo
 	module.exports = [

@@ -35,8 +35,8 @@ var Carousel = React.createClass({
                      style={{transform: "translateZ("+translateZ+"px)"}}>
                     {figures}
                 </div>
-                <div className='prev' onClick={Util.partial(this.onRotate,-angle)}></div>
-                <div className='next' onClick={Util.partial(this.onRotate, angle)}></div>
+                <div className='prev' onClick={Util.partial(this.onRotate,+angle)}></div>
+                <div className='next' onClick={Util.partial(this.onRotate,-angle)}></div>
             </section>
         );
     }
